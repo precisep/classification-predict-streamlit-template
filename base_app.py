@@ -61,7 +61,7 @@ def main():
 	options = ["Prediction", "Information"]
 	selection = st.sidebar.selectbox("Choose Option", options)
 
-	model_options = ['Base_model','Logistic_Regression','Naive_Bayes','K-Neighbors','Artificial_Neural_Network']
+	model_options = ['Base_model','Logistic_Regression','Naive_Bayes','K-Neighbors']#,'Artificial_Neural_Network']
 	model_selection = st.sidebar.selectbox("Choose Model",model_options)
 
 	# Building out the "Information" page
@@ -124,15 +124,7 @@ def main():
 				# When model has successfully run, will print prediction
 				st.success("Text Categorized as: {}".format(prediction))
 
-			elif model_selection == 'Artificial_Neural_Network':
-				# Transforming user input with vectorizer
-				vect_text = sentiments_cv.transform([tweet_text]).toarray()
-				# Load your .pkl file with the model of your choice + make predictions
-				predictor = joblib.load(open(os.path.join("resources/nn_model.pkl"),"rb"))
-				prediction = predictor.predict(vect_text)
-
-				# When model has successfully run, will print prediction
-				st.success("Text Categorized as: {}".format(prediction))	
+			
 			else:
 				st.text('Please Select a model you would like to utilize for making predictions')
 
