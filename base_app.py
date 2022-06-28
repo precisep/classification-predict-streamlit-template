@@ -25,6 +25,7 @@
 import streamlit as st
 import joblib,os
 
+
 # Data dependencies
 import pandas as pd
 
@@ -38,6 +39,9 @@ from sklearn.model_selection import train_test_split
 # Vectorizer
 news_vectorizer = open("resources/tfidfvect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
+#Count Vectorizer
+team_vectorizer = open("resources/vectorizer.pkl","rb")
+sentiments_cv = joblib.load(team_vectorizer)
 
 # Load your raw data
 raw = pd.read_csv("resources/train.csv")
@@ -49,15 +53,15 @@ def main():
 
 	# Creates a main title and subheader on your page -
 	# these are static across all pages
-	st.markdown('<p style =" font-family: sans-serif; color:#CCABD8; font-size: 42px; font-weight: bold"> Tweet Classifer</p>',unsafe_allow_html=True)
-	st.markdown('<p style =" font-family: sans-serif; color:#CCABD8; font-size: 21px; font-weight: bold"> Climate change tweet classification</p>',unsafe_allow_html=True)
+	st.title('Tweet Classifer')
+	st.subheader('Climate change tweet classification')
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 	options = ["Prediction", "Information"]
 	selection = st.sidebar.selectbox("Choose Option", options)
 
-	model_options = ['Base_model','GM1_model']
+	model_options = ['Base_model','Logistic_Regression','Naive_Bayes','K-Neighbors','Artificial_Neural_Network']
 	model_selection = st.sidebar.selectbox("Choose Model",model_options)
 
 	# Building out the "Information" page
@@ -90,23 +94,45 @@ def main():
 				# more human interpretable.
 				st.success("Text Categorized as: {}".format(prediction))
 
-			elif model_selection == 'GM1_model':
-
-				#using count vactorizer to count the occurance of words
-				vectorizer = CountVectorizer(ngram_range=(1,2))
-				vectorizer.fit_transform(X_train)
-				
-				
-				
+			elif model_selection == 'Logistic_Regression':
 				# Transforming user input with vectorizer
-				vect_text = vectorizer.transform([tweet_text]).toarray()
+				vect_text = sentiments_cv.transform([tweet_text]).toarray()
 				# Load your .pkl file with the model of your choice + make predictions
-				predictor = joblib.load(open(os.path.join("resources/lr_app.pkl"),"rb"))
+				predictor = joblib.load(open(os.path.join("resources/lr.pkl"),"rb"))
 				prediction = predictor.predict(vect_text)
 
 				# When model has successfully run, will print prediction
 				st.success("Text Categorized as: {}".format(prediction))
-				#st.success("x train shape:{}".format(X.shape))
+				
+			elif model_selection == 'Naive_Bayes':
+				# Transforming user input with vectorizer
+				vect_text = sentiments_cv.transform([tweet_text]).toarray()
+				# Load your .pkl file with the model of your choice + make predictions
+				predictor = joblib.load(open(os.path.join("resources/nb_clf.pkl"),"rb"))
+				prediction = predictor.predict(vect_text)
+
+				# When model has successfully run, will print prediction
+				st.success("Text Categorized as: {}".format(prediction))
+
+			elif model_selection == 'K-Neighbors':
+				# Transforming user input with vectorizer
+				vect_text = sentiments_cv.transform([tweet_text]).toarray()
+				# Load your .pkl file with the model of your choice + make predictions
+				predictor = joblib.load(open(os.path.join("resources/knn.pkl"),"rb"))
+				prediction = predictor.predict(vect_text)
+
+				# When model has successfully run, will print prediction
+				st.success("Text Categorized as: {}".format(prediction))
+
+			elif model_selection == 'Artificial_Neural_Network':
+				# Transforming user input with vectorizer
+				vect_text = sentiments_cv.transform([tweet_text]).toarray()
+				# Load your .pkl file with the model of your choice + make predictions
+				predictor = joblib.load(open(os.path.join("resources/nn_model.pkl"),"rb"))
+				prediction = predictor.predict(vect_text)
+
+				# When model has successfully run, will print prediction
+				st.success("Text Categorized as: {}".format(prediction))	
 			else:
 				st.text('Please Select a model you would like to utilize for making predictions')
 
