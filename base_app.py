@@ -191,8 +191,8 @@ def main():
 		plt.title('Climate Change Sentiments', fontweight = 'bold')
 		st.pyplot(fig)
 
-		st.markdown('The model was build using survay results presented in the raw data table. Figure Above show the distribution of the various sentiments collected to for model building.\n'
-					"It can be observed that the label sentiments are imbalanced, giving me weight to the 'Pro' sentiment as it has more datapoints.")
+		st.markdown('The model was build using survay results presented in the raw data table. The figure above shows the distribution of the various sentiments collected to for model building.\n'
+					"It can be observed that the label sentiments are imbalanced, giving more weight to the 'Pro' sentiment as it has more data.")
 		
 
 # Required to let Streamlit instantiate our web app.  
