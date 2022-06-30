@@ -173,12 +173,12 @@ def main():
 		#Contact 			
 		st.title('Contact Us')
 		st.subheader('South Africa – Gauteng (Head Office)')
-		st.markdown	('Telephone\n'
-					'+27 11 940 57500\n'
+		st.markdown	('Telephone')
+		st.markdown('+27 11 940 57500')
 
-					'E-mail\n'
-					'sales@greentechsolutions.com\n'
-					'support@greentechsolutions.com')
+		st.markdown	('E-mail')
+		st.markdown	('sales@greentechsolutions.com')
+		st.markdown('support@greentechsolutions.com')
 
 	#exploratory data analysis page.					
 	if selection == "Exploratory Data Analysis (EDA)":
