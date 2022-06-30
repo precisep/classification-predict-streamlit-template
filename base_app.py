@@ -171,6 +171,13 @@ def main():
 		image = Image.open('./resources/imgs/thabang.jpg')
 		st.image(image,'CFO: Thabang Mokoena,\n'
 						'Data Scientist', width=250)
+		image = Image.open('./resources/imgs/kgotso.jpg')
+		st.image(image,'Co-Founder: Kgotso Matotoka,\n'
+						'Data Scientist', width=250)
+		image = Image.open('./resources/imgs/lindo.jpg')
+		st.image(image,'Co-Founder: Lindokuhle Mnisi,\n'
+						'Data Scientist', width=250)
+						
 
 	#exploratory data analysis page.					
 	if selection == "Exploratory Data Analysis (EDA)":
