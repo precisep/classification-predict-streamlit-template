@@ -57,21 +57,13 @@ def main():
 	"""Tweet Classifier App with Streamlit """
 
 
-	
+	#logo image on the side bar
 	image = Image.open('./resources/imgs/company_logo.png')
-
 	st.sidebar.image(image, caption='Green Tech Solutions (Pty) Ltd', width=300)
 
-	
-
 	# Creating sidebar with selection box 
-	# you can create multiple pages this way
-	#page_option = ['About', 'Exploratory Data Analysis (EDA)', 'Home']
-	#page_selection = st.sidebar.selection('Pages',page_option)
 	options = ["Prediction", "Information","About","Exploratory Data Analysis (EDA)"]
 	selection = st.sidebar.selectbox("Choose Option", options)
-
-	
 
 	# Building out the "Information" page
 	if selection == "Information":
@@ -86,7 +78,7 @@ def main():
 	# Building out the predication page
 	if selection == "Prediction":
 		# Creates a main title and subheader on your page :
-		# these are static across all pages
+		# these are static headings
 		st.markdown("<h1 style='text-align: center;'>Tweet Classifer</h1>", unsafe_allow_html=True)
 		st.subheader('Climate change tweet classification')
 		st.info("Prediction with Machine Learning Models")
@@ -152,13 +144,14 @@ def main():
 			st.markdown('Neutral: the tweet neither supports nor refutes the belief of man-made climate change')
 			st.markdown('Anti: the tweet does not believe in man-made climate change')
 
+	#about page with contacts
 	if selection == 'About':
 		st.title('Green Tech Solutions (Pty) Ltd')
 		st.markdown('We are an innovative technological company, established in 2022. We specialize in providing accurate and robust tech solutions\n'
                     'for companies who want to access a broad base of consumer sentiments, spanning multiple demographic and geographic categories.\n'
                     'Our products help companies gain more insights about the impact of their products, which can assist in informing future marketing strategies.\n'
                     'Our undying passion for our planet and eco-friendly products is what drives us to collect valuable information to assist companies in making an informed decision when producing their favorite products. ')
-
+		#Team List
 		st.title('Meet Our Team')
 		st.markdown('Our team is made up of enthusiastic data scientists who are passionate about data and solving challenging problems.')			
 		
@@ -177,7 +170,15 @@ def main():
 		image = Image.open('./resources/imgs/lindo.jpg')
 		st.image(image,'Co-Founder: Lindokuhle Mnisi,\n'
 						'Data Scientist', width=250)
-						
+		#Contact 			
+		st.title('Contact Us')
+		st.subheader('South Africa – Gauteng (Head Office)')
+		st.markdown	('Telephone\n'
+					'+27 11 940 57500\n'
+
+					'E-mail\n'
+					'sales@greentechsolutions.com\n'
+					'support@greentechsolutions.com')
 
 	#exploratory data analysis page.					
 	if selection == "Exploratory Data Analysis (EDA)":
